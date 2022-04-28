@@ -22,11 +22,14 @@ class RenderSliverVisibilityDetector extends RenderProxySliver {
     RenderSliver? sliver,
     required this.key,
     required VisibilityChangedCallback? onVisibilityChanged,
+    required this.updateInterval,
   })  : _onVisibilityChanged = onVisibilityChanged,
         super(sliver);
 
   /// The key for the corresponding [VisibilityDetector] widget.
   final Key key;
+
+  final Duration updateInterval;
 
   VisibilityChangedCallback? _onVisibilityChanged;
 
@@ -87,11 +90,13 @@ class RenderSliverVisibilityDetector extends RenderProxySliver {
     }
 
     final layer = VisibilityDetectorLayer(
-        key: key,
-        widgetOffset: widgetOffset,
-        widgetSize: widgetSize,
-        paintOffset: offset,
-        onVisibilityChanged: onVisibilityChanged!);
+      key: key,
+      widgetOffset: widgetOffset,
+      widgetSize: widgetSize,
+      paintOffset: offset,
+      onVisibilityChanged: onVisibilityChanged!,
+      updateInterval: updateInterval,
+    );
     context.pushLayer(layer, super.paint, offset);
   }
 }

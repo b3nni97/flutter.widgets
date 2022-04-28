@@ -65,7 +65,8 @@ class VisibilityDetectorLayer extends ContainerLayer {
       required this.widgetOffset,
       required this.widgetSize,
       required this.paintOffset,
-      required this.onVisibilityChanged})
+      required this.onVisibilityChanged,
+      required this.updateInterval})
       : assert(key != null),
         assert(paintOffset != null),
         assert(widgetSize != null),
@@ -114,6 +115,8 @@ class VisibilityDetectorLayer extends ContainerLayer {
   ///
   /// Do not invoke this directly; call [_fireCallback] instead.
   final VisibilityChangedCallback onVisibilityChanged;
+
+  final Duration updateInterval;
 
   /// Computes the bounds for the corresponding [VisibilityDetector] widget, in
   /// global coordinates.

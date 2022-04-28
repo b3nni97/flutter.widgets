@@ -20,12 +20,15 @@ class RenderVisibilityDetector extends RenderProxyBox {
     RenderBox? child,
     required this.key,
     required VisibilityChangedCallback? onVisibilityChanged,
+    required this.updateInterval,
   })  : assert(key != null),
         _onVisibilityChanged = onVisibilityChanged,
         super(child);
 
   /// The key for the corresponding [VisibilityDetector] widget.
   final Key key;
+
+  final Duration updateInterval;
 
   VisibilityChangedCallback? _onVisibilityChanged;
 
@@ -56,11 +59,13 @@ class RenderVisibilityDetector extends RenderProxyBox {
     }
 
     final layer = VisibilityDetectorLayer(
-        key: key,
-        widgetOffset: Offset.zero,
-        widgetSize: semanticBounds.size,
-        paintOffset: offset,
-        onVisibilityChanged: onVisibilityChanged!);
+      key: key,
+      widgetOffset: Offset.zero,
+      widgetSize: semanticBounds.size,
+      paintOffset: offset,
+      onVisibilityChanged: onVisibilityChanged!,
+      updateInterval: updateInterval,
+    );
     context.pushLayer(layer, super.paint, offset);
   }
 }
