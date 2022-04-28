@@ -161,7 +161,7 @@ class VisibilityDetectorLayer extends ContainerLayer {
     final isFirstUpdate = _updated.isEmpty;
     _updated[key] = this;
 
-    final updateInterval = VisibilityDetectorController.instance.updateInterval;
+    //final updateInterval = VisibilityDetectorController.instance.updateInterval;
     if (updateInterval == Duration.zero) {
       // Even with [Duration.zero], we still want to defer callbacks to the end
       // of the frame so that they're processed from a consistent state.  This
