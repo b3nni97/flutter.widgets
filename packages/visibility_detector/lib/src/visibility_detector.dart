@@ -31,6 +31,7 @@ class VisibilityDetector extends SingleChildRenderObjectWidget {
     required Key key,
     required Widget child,
     required this.onVisibilityChanged,
+    this.updateInterval = const Duration(milliseconds: 500),
   })  : assert(key != null),
         assert(child != null),
         super(key: key, child: child);
@@ -38,12 +39,15 @@ class VisibilityDetector extends SingleChildRenderObjectWidget {
   /// The callback to invoke when this widget's visibility changes.
   final VisibilityChangedCallback? onVisibilityChanged;
 
+  final Duration updateInterval;
+
   /// See [RenderObjectWidget.createRenderObject].
   @override
   RenderVisibilityDetector createRenderObject(BuildContext context) {
     return RenderVisibilityDetector(
       key: key!,
       onVisibilityChanged: onVisibilityChanged,
+      updateInterval: updateInterval,
     );
   }
 
@@ -68,6 +72,7 @@ class SliverVisibilityDetector extends SingleChildRenderObjectWidget {
     required Key key,
     required Widget sliver,
     required this.onVisibilityChanged,
+    this.updateInterval = const Duration(milliseconds: 500),
   })  : assert(key != null),
         assert(sliver != null),
         super(key: key, child: sliver);
@@ -75,12 +80,15 @@ class SliverVisibilityDetector extends SingleChildRenderObjectWidget {
   /// The callback to invoke when this widget's visibility changes.
   final VisibilityChangedCallback? onVisibilityChanged;
 
+  final Duration updateInterval;
+
   /// See [RenderObjectWidget.createRenderObject].
   @override
   RenderSliverVisibilityDetector createRenderObject(BuildContext context) {
     return RenderSliverVisibilityDetector(
       key: key!,
       onVisibilityChanged: onVisibilityChanged,
+      updateInterval: updateInterval,
     );
   }
 

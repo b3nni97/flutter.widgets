@@ -92,6 +92,8 @@ mixin RenderVisibilityDetectorBase on RenderObject {
 
   VoidCallback? _compositionCallbackCanceller;
 
+  final Duration updateInterval;
+
   VisibilityChangedCallback? _onVisibilityChanged;
 
   /// See [VisibilityDetector.onVisibilityChanged].
