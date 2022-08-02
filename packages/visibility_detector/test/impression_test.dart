@@ -4,7 +4,6 @@ import 'package:visibility_detector/visibility_detector.dart';
 
 void main() {
   testWidgets('Material clip', (tester) async {
-    VisibilityDetectorController.instance.updateInterval = Duration.zero;
     final Key listKey = UniqueKey();
     int onFirstVis = 0;
     int onEnterVis = 0;
@@ -20,6 +19,7 @@ void main() {
                 SizedBox.fromSize(size: Size(200, 1000)),
                 VisibilityDetector(
                   key: UniqueKey(),
+                  updateInterval: Duration.zero,
                   onVisibilityChanged: (info) {
                     if (info.visibleFraction > .6) {
                       inView = true;
@@ -61,7 +61,6 @@ void main() {
   });
 
   testWidgets('Material clip with intermediate ROs', (tester) async {
-    VisibilityDetectorController.instance.updateInterval = Duration.zero;
     final Key listKey = UniqueKey();
     int onFirstVis = 0;
     int onEnterVis = 0;
@@ -78,6 +77,7 @@ void main() {
                 CustomPaint(
                   child: VisibilityDetector(
                     key: UniqueKey(),
+                    updateInterval: Duration.zero,
                     onVisibilityChanged: (info) {
                       if (info.visibleFraction > .6) {
                         inView = true;
@@ -120,7 +120,6 @@ void main() {
   });
 
   testWidgets('Programmatic visibility change', (WidgetTester tester) async {
-    VisibilityDetectorController.instance.updateInterval = Duration.zero;
     final List<VisibilityInfo> infos = <VisibilityInfo>[];
     await tester.pumpWidget(
       VisibilityDetector(
@@ -133,6 +132,7 @@ void main() {
           visible: true,
           child: VisibilityDetector(
             key: Key('weatherCard'),
+            updateInterval: Duration.zero,
             onVisibilityChanged: (info) {
               infos.add(info);
             },
@@ -153,6 +153,7 @@ void main() {
           visible: false,
           child: VisibilityDetector(
             key: Key('weatherCard'),
+            updateInterval: Duration.zero,
             onVisibilityChanged: (info) {
               infos.add(info);
             },
@@ -173,6 +174,7 @@ void main() {
           visible: true,
           child: VisibilityDetector(
             key: Key('weatherCard'),
+            updateInterval: Duration.zero,
             onVisibilityChanged: (info) {
               infos.add(info);
             },

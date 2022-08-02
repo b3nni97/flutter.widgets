@@ -6,7 +6,6 @@ void main() {
   final visibilityDetectorKey = UniqueKey();
 
   // Disable VisibilityDetector timers.
-  VisibilityDetectorController.instance.updateInterval = Duration.zero;
 
   testWidgets(
     'VisibilityDetector does not affect the positioning of text selection '
@@ -21,6 +20,7 @@ void main() {
         tester,
         (textField) => VisibilityDetector(
           key: visibilityDetectorKey,
+          updateInterval: Duration.zero,
           onVisibilityChanged: (visibilityInfo) {},
           child: textField,
         ),

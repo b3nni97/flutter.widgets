@@ -92,9 +92,7 @@ mixin RenderVisibilityDetectorBase on RenderObject {
 
   VoidCallback? _compositionCallbackCanceller;
 
-  final Duration updateInterval;
-
-  final Duration updateInterval;
+  Duration? _updateInterval;
 
   VisibilityChangedCallback? _onVisibilityChanged;
 
@@ -146,7 +144,7 @@ mixin RenderVisibilityDetectorBase on RenderObject {
     _updates[key] = () {
       _fireCallback(layer, bounds);
     };
-    final updateInterval = VisibilityDetectorController.instance.updateInterval;
+    final updateInterval = _updateInterval ?? Duration(milliseconds: 500);
     if (updateInterval == Duration.zero) {
       // Even with [Duration.zero], we still want to defer callbacks to the end
       // of the frame so that they're processed from a consistent state.  This
@@ -275,9 +273,11 @@ class RenderVisibilityDetector extends RenderProxyBox
     RenderBox? child,
     required this.key,
     required VisibilityChangedCallback? onVisibilityChanged,
+    required Duration updateInterval,
   })  : assert(key != null),
         super(child) {
     _onVisibilityChanged = onVisibilityChanged;
+    _updateInterval = updateInterval;
   }
 
   @override
@@ -298,8 +298,10 @@ class RenderSliverVisibilityDetector extends RenderProxySliver
     RenderSliver? sliver,
     required this.key,
     required VisibilityChangedCallback? onVisibilityChanged,
+    required Duration updateInterval,
   }) : super(sliver) {
     _onVisibilityChanged = onVisibilityChanged;
+    _updateInterval = updateInterval;
   }
 
   @override

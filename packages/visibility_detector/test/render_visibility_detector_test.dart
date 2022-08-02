@@ -12,8 +12,6 @@ import 'package:visibility_detector/src/render_visibility_detector.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 void main() {
-  VisibilityDetectorController.instance.updateInterval = Duration.zero;
-
   testWidgets('RVS (box) unregisters its callback on paint',
       (WidgetTester tester) async {
     final RenderVisibilityDetector detector = RenderVisibilityDetector(
